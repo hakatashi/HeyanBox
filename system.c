@@ -21,7 +21,6 @@ int main(void){
 		for(j=0;j<32;j++){
 			hura=0;
 			if(11<j && j<20 && i<10 ){
-				printf("0");
 				hura=1;
 				printf("%d",hura);
 			}
