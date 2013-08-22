@@ -19,9 +19,9 @@ window.onload = function(){
 	}
 }
 
-//データ読み込み
+//平安京データをパースしてアップデート
 
-$.get("/data.txt",{},function(data){
+function parseAndUpdate(data) {
 	var line = data.split("\n");
 	var cnt=0;
 	money=parseInt(line[cnt]);
@@ -33,7 +33,10 @@ $.get("/data.txt",{},function(data){
 	n=parseInt(line[cnt]);
 	cnt++;
 	for (var i=0;i<n;i++) {
-		temple.push( [ parseInt(line[cnt].split(" ")[0]), parseInt(line[cnt].split(" ")[1]) ] );
+		loadX=parseInt(line[cnt].split(" ")[0]);
+		loadY=parseInt(line[cnt].split(" ")[1]);
+		temple.push( [ loadX, loadY ] );
+		$("div#Heyan div#"+loadX+"_"+loadY).addClass("templebox").css("background-image","url(/img/div_temple.png)");
 		cnt++;
 	}
 	for (var i=0;i<38;i++) {
@@ -44,7 +47,13 @@ $.get("/data.txt",{},function(data){
 			gridpopul[i][j] = parseInt(nums[j]);
 		}
 	}
+}
+
+//データ読み込み
+
+$.get("/data.txt",{},function(data){
 	createDiv();
+	parseAndUpdate(data);
 });
 
 //指定した区画が寺か判定
@@ -66,9 +75,6 @@ function createDiv() {
 		for ( y = 0 ; y < 38 ; y++ ) {
 			if (x < 12 || 20 <= x || 10 <= y) {
 				$jqObj = $("<div/>").css("top",(y*24+4)+"px").css("left",(x*24+4)+"px").addClass("box").attr("id",x+"_"+y);
-				if (isTemple(x,y)==1) {
-					$jqObj.addClass("templebox").css("background-image","url(/img/div_temple.png)");
-				}
 				$HeyanDiv.append($jqObj);
 			}
 		}
