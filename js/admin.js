@@ -52,10 +52,13 @@ for ( x = 0 ; x < 32 ; x++ ) {
 	for ( y = 0 ; y < 38 ; y++ ) {
 		if (x < 12 || 20 <= x || 10 <= y) {
 			$jqObj = $("<div/>").css("top",(y*24+4)+"px").css("left",(x*24+4)+"px").addClass("box").attr("id",x+"_"+y);
+			
 			$HeyanDiv.append($jqObj);
 		}
 	}
 }
+
+//指定した区画が寺か判定
 
 //マウスオーバー処理
 

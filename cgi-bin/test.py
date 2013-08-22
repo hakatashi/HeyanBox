@@ -7,7 +7,7 @@ if 'QUERY_STRING' in os.environ:
 else:
     query = {}
 
-FILE = "/data.txt"
+FILE = "data.txt"
 data = open(FILE, "r")
 lines = data.readlines()
 data.close()
