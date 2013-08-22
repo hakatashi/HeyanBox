@@ -19,9 +19,9 @@ window.onload = function(){
 	}
 }
 
-//データ読み込み
+//平安京データをパースしてアップデート
 
-$.get("/data.txt",{},function(data){
+function parseAndUpdate(data) {
 	var line = data.split("\n");
 	var cnt=0;
 	money=parseInt(line[cnt]);
@@ -33,7 +33,10 @@ $.get("/data.txt",{},function(data){
 	n=parseInt(line[cnt]);
 	cnt++;
 	for (var i=0;i<n;i++) {
-		temple.push( [ parseInt(line[cnt].split(" ")[0]), parseInt(line[cnt].split(" ")[1]) ] );
+		loadX=parseInt(line[cnt].split(" ")[0]);
+		loadY=parseInt(line[cnt].split(" ")[1]);
+		temple.push( [ loadX, loadY ] );
+		$("div#Heyan div#"+loadX+"_"+loadY).addClass("templebox").css("background-image","url(/img/div_temple.png)");
 		cnt++;
 	}
 	for (var i=0;i<38;i++) {
@@ -44,53 +47,74 @@ $.get("/data.txt",{},function(data){
 			gridpopul[i][j] = parseInt(nums[j]);
 		}
 	}
-});
-
-//区画を生成
-
-for ( x = 0 ; x < 32 ; x++ ) {
-	for ( y = 0 ; y < 38 ; y++ ) {
-		if (x < 12 || 20 <= x || 10 <= y) {
-			$jqObj = $("<div/>").css("top",(y*24+4)+"px").css("left",(x*24+4)+"px").addClass("box").attr("id",x+"_"+y);
-			
-			$HeyanDiv.append($jqObj);
-		}
-	}
 }
+
+//データ読み込み
+
+$.get("/data.txt",{},function(data){
+	createDiv();
+	parseAndUpdate(data);
+});
 
 //指定した区画が寺か判定
 
-//マウスオーバー処理
-
-$("div#Heyan div.box").hover(function(){
-	var point = idToPoint( $(this).attr("id") );
-	$(this).css("background-image","url(/img/div_on.png)");
-	$("div#info").css("display","block");
-	$("div#info").css("top",(point[1]*24-40)+"px");
-	$("div#info").css("left",(point[0]*24-46)+"px");
-	$("div#info p").html( pointToText(point[0],point[1]) + "<br>" + gridpopul[point[1]][point[0]] + "人");
-}, function(){
-	if (!$(this).hasClass('currentPage')) {
-		$(this).css("background-image","url(/img/div.png)");
-		$("div#info").css("display","none");
+function isTemple(x,y) {
+	for (i=0;i<temple.length;i++) {
+		if ( temple[i][0] == x && temple[i][1] == y ) {
+			return 1;
+		}
 	}
-});
+	return 0;
+}
 
-//クリック処理
+//区画を生成
 
-$("div#Heyan div.box").click(function(){
-	var point = idToPoint( $(this).attr("id") );
-	if (isselected==0 || selected[0] != point[0] || selected[1] != point[1]) {
-		$("div#Panel div#temple").css("display","block");
-		isselected=1;
-		selected=point;
-		selectedUpdate();
-	} else {
-		$("div#Panel div#temple").css("display","none");
-		isselected=0;
-		selectedUpdate();
+function createDiv() {
+	
+	for ( x = 0 ; x < 32 ; x++ ) {
+		for ( y = 0 ; y < 38 ; y++ ) {
+			if (x < 12 || 20 <= x || 10 <= y) {
+				$jqObj = $("<div/>").css("top",(y*24+4)+"px").css("left",(x*24+4)+"px").addClass("box").attr("id",x+"_"+y);
+				$HeyanDiv.append($jqObj);
+			}
+		}
 	}
-});
+
+	//マウスオーバー処理
+
+	$("div#Heyan div.box").hover(function(){
+		var point = idToPoint( $(this).attr("id") );
+		$(this).css("background-image","url(/img/div_on.png)");
+		$("div#info").css("display","block");
+		$("div#info").css("top",(point[1]*24-40)+"px");
+		$("div#info").css("left",(point[0]*24-46)+"px");
+		$("div#info p").html( pointToText(point[0],point[1]) + "<br>" + gridpopul[point[1]][point[0]] + "人");
+	}, function(){
+		if (!$(this).hasClass('currentPage')) {
+			var point = idToPoint( $(this).attr("id") );
+			if (isTemple(point[0],point[1])==1) $(this).css("background-image","url(/img/div_temple.png)");
+			else $(this).css("background-image","url(/img/div.png)");;
+			$("div#info").css("display","none");
+		}
+	});
+
+	//クリック処理
+
+	$("div#Heyan div.box").click(function(){
+		var point = idToPoint( $(this).attr("id") );
+		if (isselected==0 || selected[0] != point[0] || selected[1] != point[1]) {
+			$("div#Panel div#temple").css("display","block");
+			isselected=1;
+			selected=point;
+			selectedUpdate();
+		} else {
+			$("div#Panel div#temple").css("display","none");
+			isselected=0;
+			selectedUpdate();
+		}
+	});
+	
+}
 
 //大内裏を生成
 
@@ -169,7 +193,6 @@ function selectedUpdate() {
 
 $(window).keydown(function(e){
 	var nextX, nextY;
-	$("h1").text("hoge");
 	if (isselected!=0) {
 		switch (e.keyCode) {
 		case 37:
