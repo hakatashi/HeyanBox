@@ -104,6 +104,16 @@ $HeyanDiv.append($jqObj);
 $jqObj = $("<div/>").css("display","none").attr("class","button").attr("id","temple").text("寺を建造");
 $PanelDiv.append($jqObj);
 
+//年送りボタンを生成
+
+$jqObj = $("<div/>").css("display","block").attr("class","button").attr("id","nextyear").text("次の年");
+$PanelDiv.append($jqObj);
+
+//リセットボタンを生成
+
+$jqObj = $("<div/>").css("display","block").attr("class","button").attr("id","reset").text("リセット");
+$PanelDiv.append($jqObj);
+
 //クリック処理
 
 $("div#Panel div#temple").click(function(){
