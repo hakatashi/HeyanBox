@@ -26,17 +26,17 @@ function parseAndUpdate(data) {
 	var cnt=0;
 	money=parseInt(line[cnt]);
 	cnt++;
-	$("div#Infobar div#money div.statsval").text(money+"文");
-	population=parseInt(line[1]);
+	$("div#Infobar div#money div.statsval").text(line[0]+"文");
+	population=parseInt(line[cnt]);
 	cnt++;
 	$("div#Infobar div#popul div.statsval").text(population+"人");
 	n=parseInt(line[cnt]);
 	cnt++;
+	temple = [];
 	for (var i=0;i<n;i++) {
 		loadX=parseInt(line[cnt].split(" ")[0]);
 		loadY=parseInt(line[cnt].split(" ")[1]);
 		temple.push( [ loadX, loadY ] );
-		$("div#Heyan div#"+loadX+"_"+loadY).addClass("templebox").css("background-image","url(/img/div_temple.png)");
 		cnt++;
 	}
 	for (var i=0;i<38;i++) {
@@ -45,6 +45,11 @@ function parseAndUpdate(data) {
 		gridpopul[i] = new Array(32);
 		for (var j=0;j<32;j++) {
 			gridpopul[i][j] = parseInt(nums[j]);
+			if (isTemple(j,i)==1) {
+				$("div#Heyan div#"+j+"_"+i).addClass("templebox").css("background-image","url(/img/div_temple.png)");
+			} else {
+				$("div#Heyan div#"+j+"_"+i).removeClass("templebox").css("background-image","url(/img/div.png)");
+			}
 		}
 	}
 }
@@ -144,11 +149,12 @@ $("div#Panel div.button").hover(function(){
 	$(this).css("background-color","#DDD");
 });
 
-//クリック処理
+//寺生成処理
 
 $("div#Panel div#temple").click(function(){
 	$.get("/cgi-bin/test.py",{"x":selected[0],"y":selected[1]},function(data){
-		document.write(data);
+		parseAndUpdate(data);
+		//document.write(data);
 	});
 });
 
