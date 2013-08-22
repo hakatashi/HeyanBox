@@ -17,6 +17,53 @@ div#Panel div.button {
 	vertical-align: middle;
 }
 
+div#Infobar {
+	width: 772px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+div#Infobar div#money {
+	width: 240px;
+	height: 40px;
+	float: left;
+	position: relative;
+}
+
+div#Infobar div#popul {
+	width: 240px;
+	height: 40px;
+	float: left;
+	position: relative;
+}
+
+div#Infobar div.statsicon {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+div#Infobar div#money div.statsicon {
+	background-image: url(/img/moneyicon.png);
+}
+
+div#Infobar div#popul div.statsicon {
+	background-image: url(/img/populicon.png);
+}
+
+div#Infobar div.statsval {
+	width: 190px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	left: 45px;
+	font-size: 24px;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
 div#Heyan {
 	width: 772px;
 	height: 916px;
