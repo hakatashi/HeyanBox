@@ -7,7 +7,7 @@ int main(void){
 	fscanf(fp,"%d",&gold);
 	fscanf(fp,"%d",&population_all);
 	fscanf(fp,"%d",&temple_nu);
-	int temple_x[temple_nu],temple_y[temple_nu],hue_1,hue_2,hue_3,hue_4; //hue_1は左上,hue_2は右上,hue_3は左下,hue_4右下
+	int temple_x[temple_nu],temple_y[temple_nu],hue_1_x,hue_1_y,hue_2_x,hue_2_y; //hue_1は左上,hue_2は右下
 	for(i=0;i<temple_nu;i++){
 		fscanf(fp,"%d",&temple_x[i]);
 		fscanf(fp,"%d",&temple_y[i]);
@@ -19,6 +19,9 @@ int main(void){
 	}
 	fclose(fp);
 	for(k=0;k<temple_nu;k++){
+		hue_1_x=temple_x[k]-4;
+		hue_1_y=temple_y[k]-4;
+		hue_2_x=temple_x[k]+4;
 		if()
 	}
 	for(i=0;i<38;i++){
