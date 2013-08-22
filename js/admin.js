@@ -7,6 +7,8 @@ var isselected=0;
 var pageload=0;
 var jsload=0;
 var money,population;
+var temple = new Array();
+var gridpopul = new Array(38);
 
 //onload関数
 
@@ -21,10 +23,27 @@ window.onload = function(){
 
 $.get("/data.txt",{},function(data){
 	var line = data.split("\n");
-	money=parseInt(line[0]);
+	var cnt=0;
+	money=parseInt(line[cnt]);
+	cnt++;
 	$("div#Infobar div#money div.statsval").text(money+"文");
 	population=parseInt(line[1]);
+	cnt++;
 	$("div#Infobar div#popul div.statsval").text(population+"人");
+	n=parseInt(line[cnt]);
+	cnt++;
+	for (var i=0;i<n;i++) {
+		temple.push( [ parseInt(line[cnt].split(" ")[0]), parseInt(line[cnt].split(" ")[1]) ] );
+		cnt++;
+	}
+	for (var i=0;i<38;i++) {
+		var nums = line[cnt].split(" ");
+		cnt++;
+		gridpopul[i] = new Array(32);
+		for (var j=0;j<32;j++) {
+			gridpopul[i][j] = parseInt(nums[j]);
+		}
+	}
 });
 
 //区画を生成
@@ -46,7 +65,7 @@ $("div#Heyan div.box").hover(function(){
 	$("div#info").css("display","block");
 	$("div#info").css("top",(point[1]*24-40)+"px");
 	$("div#info").css("left",(point[0]*24-46)+"px");
-	$("div#info").text( pointToText(point[0],point[1]) );
+	$("div#info p").html( pointToText(point[0],point[1]) + "<br>" + gridpopul[point[1]][point[0]] + "人");
 }, function(){
 	if (!$(this).hasClass('currentPage')) {
 		$(this).css("background-image","url(/img/div.png)");
@@ -104,6 +123,11 @@ $("div#Heyan div#daidairi").hover(function(){
 
 $jqObj = $("<div/>").css("display","none").attr("id","info");
 $HeyanDiv.append($jqObj);
+
+//情報ウィンドウテキストを生成
+
+$jqObj = $("<p/>");
+$("div#info").append($jqObj);
 
 //選択枠を作成
 

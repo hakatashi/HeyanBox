@@ -137,10 +137,14 @@ div#info {
 	position: absolute;
 	z-index: 9999;
 	background-image: url(/img/info.png);
+}
+
+div#info p {
 	font-family: serif;
 	font-size: 12px;
+	line-height: 14px;
+	margin: 0;
 	text-align: center;
-	vertical-align: middle;
 }
 
 img#selected {
