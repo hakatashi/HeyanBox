@@ -5,8 +5,6 @@ var $jqObj;
 var selected=[0,0];
 var isselected=0;
 
-$("p#hoge").text("hoge");
-
 //区画を生成
 
 for ( x = 0 ; x < 32 ; x++ ) {
