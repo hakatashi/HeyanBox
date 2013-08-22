@@ -65,9 +65,9 @@ $PanelDiv.append($jqObj);
 //クリック処理
 
 $("div#Panel div#temple").click(function(){
-	$.post("/data.txt",{"x":selected[0],"y":selected[1]},function(data){
+	$.get("/cgi-bin/test.py",{"x":selected[0],"y":selected[1]},function(data){
 		document.write(data);
-	}, "xml");
+	});
 });
 
 //マウスオーバー処理
