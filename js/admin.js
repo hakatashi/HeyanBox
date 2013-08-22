@@ -1,5 +1,7 @@
 var $HeyanDiv = $("div#Heyan");
 var $jqObj;
+var selected=[0,0];
+var isselected=0;
 
 $("p#hoge").text("hoge");
 
@@ -8,7 +10,7 @@ $("p#hoge").text("hoge");
 for ( x = 0 ; x < 32 ; x++ ) {
 	for ( y = 0 ; y < 38 ; y++ ) {
 		if (x < 12 || 20 <= x || 10 <= y) {
-			$jqObj = $("<div/>").css("top",y*24+"px").css("left",x*24+"px").addClass("box").attr("id",x+"_"+y);
+			$jqObj = $("<div/>").css("top",(y*24+4)+"px").css("left",(x*24+4)+"px").addClass("box").attr("id",x+"_"+y);
 			$HeyanDiv.append($jqObj);
 		}
 	}
@@ -16,25 +18,39 @@ for ( x = 0 ; x < 32 ; x++ ) {
 
 //マウスオーバー処理
 
-$(function(){
-	$("div#Heyan div.box").hover(function(){
-		var point = idToPoint( $(this).attr("id") );
-		$(this).css("background-image","url(/img/div_on.png)");
-		$("div#info").css("display","block");
-		$("div#info").css("top",(point[1]*24-50)+"px");
-		$("div#info").css("left",(point[0]*24-50)+"px");
-		$("div#info").text( pointToText(point[0],point[1]) );
-	}, function(){
-		if (!$(this).hasClass('currentPage')) {
-			$(this).css("background-image","url(/img/div.png)");
-			$("div#info").css("display","none");
-		}
-	});
+$("div#Heyan div.box").hover(function(){
+	var point = idToPoint( $(this).attr("id") );
+	$(this).css("background-image","url(/img/div_on.png)");
+	$("div#info").css("display","block");
+	$("div#info").css("top",(point[1]*24-40)+"px");
+	$("div#info").css("left",(point[0]*24-46)+"px");
+	$("div#info").text( pointToText(point[0],point[1]) );
+}, function(){
+	if (!$(this).hasClass('currentPage')) {
+		$(this).css("background-image","url(/img/div.png)");
+		$("div#info").css("display","none");
+	}
+});
+
+//クリック処理
+
+$("div#Heyan div.box").click(function(){
+	var point = idToPoint( $(this).attr("id") );
+	if (isselected==0 || selected[0] != point[0] || selected[1] != point[1]) {
+		$("img#selected").css("display","block");
+		$("img#selected").css("top",point[1]*24+"px");
+		$("img#selected").css("left",point[0]*24+"px");
+		isselected=1;
+		selected=point;
+	} else {
+		$("img#selected").css("display","none");
+		isselected=0;
+	}
 });
 
 //大内裏を生成
 
-$jqObj = $("<div/>").css("top","0px").css("left","288px").attr("id","daidairi");
+$jqObj = $("<div/>").css("top","4px").css("left","292px").attr("id","daidairi");
 $HeyanDiv.append($jqObj);
 
 //マウスオーバー処理
@@ -52,6 +68,11 @@ $(function(){
 //情報ウィンドウを生成
 
 $jqObj = $("<div/>").css("display","none").attr("id","info");
+$HeyanDiv.append($jqObj);
+
+//選択枠を作成
+
+$jqObj = $("<img>").css("display","none").attr("id","selected").attr("src","/img/selected.png");
 $HeyanDiv.append($jqObj);
 
 //idを座標にパース
