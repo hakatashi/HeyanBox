@@ -123,12 +123,8 @@ div#Heyan div.box {
 	z-index: 10;
 }
 
-div#Heyan div.box_temple {
-	width: 20px;
-	height: 20px;
-	position: absolute;
+div#Heyan div.temple {
 	background-image: url(/img/div_temple.png);
-	z-index: 10;
 }
 
 div#Heyan div#daidairi {
