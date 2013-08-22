@@ -33,10 +33,10 @@ strTEMPLES = [str(posts[0])+" "+str(posts[1]) for posts in TEMPLES]
 strGRID = []
 for posts in GRID:
    strGRID.append(" ".join([str(pos) for pos in posts]))
-data.write("\n".join([str(MONEY), str(POPULATION), str(TEMPLE)] + strTEMPLES + strGRID))
+datatext = "\n".join([str(MONEY), str(POPULATION), str(TEMPLE)] + strTEMPLES + strGRID)
+
+data.write(datatext)
 data.close()
 
-print "Content-Type: text/html\n\n"
-print x, y
-
-data.close()
+print "Content-Type: text/plain\n"
+print datatext
