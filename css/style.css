@@ -1,6 +1,6 @@
 div#Heyan {
-	width: 768px;
-	height: 912px;
+	width: 772px;
+	height: 916px;
 	background-color: #FFF;
 	margin: 0 auto;
 	position: relative;
@@ -11,6 +11,7 @@ div#Heyan div.box {
 	height: 20px;
 	position: absolute;
 	background-image: url(/img/div.png);
+	z-index: 10;
 }
 
 div#Heyan div#daidairi {
@@ -18,4 +19,25 @@ div#Heyan div#daidairi {
 	height: 236px;
 	position: absolute;
 	background-image: url(/img/daidairi.png);
+}
+
+div#info {
+	width: 120px;
+	height: 30px;
+	display: block;
+	position: absolute;
+	z-index: 9999;
+	background-color: #CCC;
+	font-family: serif;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+img#selected {
+	width: 28px;
+	height: 28px;
+	display: block;
+	position: absolute;
+	z-index: 1;
 }
