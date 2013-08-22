@@ -22,9 +22,9 @@ window.onload = function(){
 $.get("/data.txt",{},function(data){
 	var line = data.split("\n");
 	money=parseInt(line[0]);
-	$("div#Infobar div#money div.statsval").text(money);
+	$("div#Infobar div#money div.statsval").text(money+"文");
 	population=parseInt(line[1]);
-	$("div#Infobar div#popul div.statsval").text(population);
+	$("div#Infobar div#popul div.statsval").text(population+"人");
 });
 
 //区画を生成
