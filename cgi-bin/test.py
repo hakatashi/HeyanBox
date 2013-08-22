@@ -1,25 +1,11 @@
 #!/usr/bin/env python
+import os
 import cgi
-import cgitb; cgitb.enable()
 
-html = '''Content-type: text/html\n
-<html>
-<body><h1>
-%d
-</h1></body>
-</html>
-'''
+if 'QUERY_STRING' in os.environ:
+    query = cgi.parse_qs(os.environ['QUERY_STRING'])
+else:
+    query = {}
 
-form = cgi.FieldStorage()
-pos = [form["x"].value, form["y"].value]
-
-hoge = int(pos[0])+int(pos[1])
-
-print html % hoge
-
-'''
-if not (form.has_key("x") and form.has_key("y")):
-    print "<H1>Error</H1>"
-    print "Please fill in the name and addr fields."
-    return
-'''
+print "Content-Type: text/html\n\n"
+print int(query["x"][0])+int(query["y"][0])

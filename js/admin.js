@@ -64,8 +64,11 @@ $PanelDiv.append($jqObj);
 
 //クリック処理
 
-$("div#Heyan div.box").click(function(){
-};
+$("div#Panel div#temple").click(function(){
+	$.post("/data.txt",{"x":selected[0],"y":selected[1]},function(data){
+		document.write(data);
+	}, "xml");
+});
 
 //マウスオーバー処理
 
