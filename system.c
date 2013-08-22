@@ -146,6 +146,9 @@ int main(void){
 			if(population_point_map[j][i]==1){
 				population[j][i]+=100;
 			}
+			if(population[j][i]<0){
+				population[j][i]=0;
+			}
 			population_all+=population[j][i];
 		}
 	}
