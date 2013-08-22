@@ -4,12 +4,28 @@ var $temple = $("div#Panel div#temple");
 var $jqObj;
 var selected=[0,0];
 var isselected=0;
+var pageload=0;
+var jsload=0;
+var money,population;
 
 //onload関数
 
 window.onload = function(){
-	$("#Loading").css("display","none");
+	pageload=1;
+	if (jsload==1) {
+		$("#Loading").css("display","none");
+	}
 }
+
+//データ読み込み
+
+$.get("/data.txt",{},function(data){
+	var line = data.split("\n");
+	money=parseInt(line[0]);
+	$("div#Infobar div#money div.statsval").text(money);
+	population=parseInt(line[1]);
+	$("div#Infobar div#popul div.statsval").text(population);
+});
 
 //区画を生成
 
@@ -93,3 +109,8 @@ $HeyanDiv.append($jqObj);
 
 $jqObj = $("<img>").css("display","none").attr("id","selected").attr("src","/img/selected.png");
 $HeyanDiv.append($jqObj);
+
+jsload=1;
+if (pageload==1) {
+	$("#Loading").css("display","none");
+}
