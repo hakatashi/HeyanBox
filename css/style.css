@@ -19,3 +19,16 @@ div#Heyan div#daidairi {
 	position: absolute;
 	background-image: url(/img/daidairi.png);
 }
+
+div#info {
+	width: 120px;
+	height: 30px;
+	display: block;
+	position: absolute;
+	z-index: 9999;
+	background-color: #CCC;
+	font-family: serif;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+}
