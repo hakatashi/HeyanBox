@@ -66,20 +66,20 @@ int main(void){
 		if(hue_1_y<0){
 			hue_1_y=0;//上の判定
 		}
-		if(12<temple_x[k] && temple_x[k]<20 && -1<hue_1_y && hue_1_y<10){
-			hue_1_y=12;//本部
+		if(11<temple_x[k] && temple_x[k]<20 && -1<hue_1_y && hue_1_y<10){
+			hue_1_y=10;//本部
 		}
 		if(31<hue_2_x){
 			hue_2_x=31;//右の判定
 		}
-		if(12<hue_2_x && hue_2_x<20 && hue_2_y<10){
-			hue_2_x=12;//本部
+		if(11<hue_2_x && hue_2_x<20 && hue_2_y<10){
+			hue_2_x=11;//本部
 		}
 		if(37<hue_2_y){
 			hue_2_y=37;//下
 		}
-		for(i=hue_1_y;i<hue_2_y;i++){
-			for(j=hue_1_x;j<hue_2_x;j++){
+		for(i=hue_1_y;i<=hue_2_y;i++){
+			for(j=hue_1_x;j<=hue_2_x;j++){
 				population_point_map[j][i]=1;
 			}
 		}
