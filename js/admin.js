@@ -5,6 +5,12 @@ var $jqObj;
 var selected=[0,0];
 var isselected=0;
 
+//onload関数
+
+window.onload = function(){
+	$("#Loading").css("display","none");
+}
+
 //区画を生成
 
 for ( x = 0 ; x < 32 ; x++ ) {
