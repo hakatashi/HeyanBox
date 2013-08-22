@@ -1,0 +1,21 @@
+div#Heyan {
+	width: 768px;
+	height: 912px;
+	background-color: #FFF;
+	margin: 0 auto;
+	position: relative;
+}
+
+div#Heyan div.box {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	background-image: url(/img/div.png);
+}
+
+div#Heyan div#daidairi {
+	width: 188px;
+	height: 236px;
+	position: absolute;
+	background-image: url(/img/daidairi.png);
+}
