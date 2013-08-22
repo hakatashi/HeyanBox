@@ -81,16 +81,14 @@ $("div#Heyan div.box").hover(function(){
 $("div#Heyan div.box").click(function(){
 	var point = idToPoint( $(this).attr("id") );
 	if (isselected==0 || selected[0] != point[0] || selected[1] != point[1]) {
-		$("img#selected").css("display","block");
-		$("img#selected").css("top",point[1]*24+"px");
-		$("img#selected").css("left",point[0]*24+"px");
 		$("div#Panel div#temple").css("display","block");
 		isselected=1;
 		selected=point;
+		selectedUpdate();
 	} else {
-		$("img#selected").css("display","none");
 		$("div#Panel div#temple").css("display","none");
 		isselected=0;
+		selectedUpdate();
 	}
 });
 
@@ -113,6 +111,14 @@ $PanelDiv.append($jqObj);
 
 $jqObj = $("<div/>").css("display","block").attr("class","button").attr("id","reset").text("リセット");
 $PanelDiv.append($jqObj);
+
+//ボタンのマウスオーバー処理
+
+$("div#Panel div.button").hover(function(){
+	$(this).css("background-color","#EEE");
+}, function(){
+	$(this).css("background-color","#DDD");
+});
 
 //クリック処理
 
@@ -146,6 +152,51 @@ $("div#info").append($jqObj);
 
 $jqObj = $("<img>").css("display","none").attr("id","selected").attr("src","/img/selected.png");
 $HeyanDiv.append($jqObj);
+
+//選択情報をアップデート
+
+function selectedUpdate() {
+	if (isselected==0) {
+		$("img#selected").css("display","none");
+	} else {
+		$("img#selected").css("display","block");
+		$("img#selected").css("top",selected[1]*24+"px");
+		$("img#selected").css("left",selected[0]*24+"px");
+	} 
+}
+
+//キー操作
+
+$(window).keydown(function(e){
+	var nextX, nextY;
+	$("h1").text("hoge");
+	if (isselected!=0) {
+		switch (e.keyCode) {
+		case 37:
+			nextX = selected[0]-1;
+			nextY = selected[1];
+			break;
+		case 38:
+			nextX = selected[0];
+			nextY = selected[1]-1;
+			break;
+		case 39:
+			nextX = selected[0]+1;
+			nextY = selected[1];
+			break;
+		case 40:
+			nextX = selected[0];
+			nextY = selected[1]+1;
+			break;
+		}
+		if (0 <= nextX && nextX < 32 && 0 <= nextY && nextY < 38 && (nextX < 12 || 20 <= nextX || 10 <= nextY) ) {
+			selected = [nextX,nextY];
+			selectedUpdate();
+		}
+	}
+});
+
+//onloadでロード画面を消す
 
 jsload=1;
 if (pageload==1) {
