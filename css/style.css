@@ -26,7 +26,6 @@ div#Infobar {
 div#Infobar div#money {
 	width: 240px;
 	height: 40px;
-	background-color: #CCC;
 	float: left;
 	position: relative;
 }
@@ -34,7 +33,6 @@ div#Infobar div#money {
 div#Infobar div#popul {
 	width: 240px;
 	height: 40px;
-	background-color: #CCC;
 	float: left;
 	position: relative;
 }
@@ -45,7 +43,14 @@ div#Infobar div.statsicon {
 	position: absolute;
 	top: 5px;
 	left: 5px;
-	background-color: #FF0;
+}
+
+div#Infobar div#money div.statsicon {
+	background-image: url(/img/moneyicon.png);
+}
+
+div#Infobar div#popul div.statsicon {
+	background-image: url(/img/populicon.png);
 }
 
 div#Infobar div.statsval {
@@ -54,7 +59,9 @@ div#Infobar div.statsval {
 	position: absolute;
 	top: 5px;
 	left: 45px;
-	background-color: #FF0;
+	font-size: 24px;
+	vertical-align: middle;
+	line-height: 30px;
 }
 
 div#Heyan {
