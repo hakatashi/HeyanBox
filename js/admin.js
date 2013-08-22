@@ -3,7 +3,7 @@ var $jqObj;
 
 $("p#hoge").text("hoge");
 
-//‹æ‰æ‚ğ¶¬
+//åŒºç”»ã‚’ç”Ÿæˆ
 
 for ( x = 0 ; x < 32 ; x++ ) {
 	for ( y = 0 ; y < 38 ; y++ ) {
@@ -14,7 +14,7 @@ for ( x = 0 ; x < 32 ; x++ ) {
 	}
 }
 
-//ƒ}ƒEƒXƒI[ƒo[ˆ—
+//ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†
 
 $(function(){
 	$("div#Heyan div.box").hover(function(){
@@ -26,12 +26,12 @@ $(function(){
 	});
 });
 
-//‘å“à— ‚ğ¶¬
+//å¤§å†…è£ã‚’ç”Ÿæˆ
 
 $jqObj = $("<div/>").css("top","0px").css("left","288px").attr("id","daidairi");
 $HeyanDiv.append($jqObj);
 
-//ƒ}ƒEƒXƒI[ƒo[ˆ—
+//ãƒã‚¦ã‚¹ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†
 
 $(function(){
 	$("div#Heyan div#daidairi").hover(function(){
