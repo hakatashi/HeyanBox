@@ -41,7 +41,7 @@ int main(void){
 		}
 		if(31<hue_2_x){
 			hue_2_x=31;
-		}else if(11<hue_2_x && hue_2_x<20){
+		}else if(11<hue_2_x && hue_2_x<20 && hue_2_y<10){
 			hue_2_x=11;
 		}
 		if(37<hue_2_y){
