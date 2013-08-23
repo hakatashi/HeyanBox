@@ -40,3 +40,5 @@ data.close()
 
 print "Content-Type: text/plain\n"
 print datatext
+
+os.system("a.exe")
