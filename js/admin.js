@@ -72,6 +72,28 @@ function isTemple(x,y) {
 	return 0;
 }
 
+//指定した区画を選択
+
+function selectDiv(x,y) {
+	if (isTemple(x,y)==0) $("div#Panel div#temple").css("display","block");
+	else $("div#Panel div#temple").css("display","none");
+	isselected=1;
+	selected=[x,y];
+	selectedUpdate();
+}
+
+//指定した区画をクリック
+
+function clickDiv(x,y) {
+	if (isselected==0 || selected[0] != x || selected[1] != y) {
+		selectDiv(x,y);
+	} else {
+		$("div#Panel div#temple").css("display","none");
+		isselected=0;
+		selectedUpdate();
+	}
+}
+
 //区画を生成
 
 function createDiv() {
@@ -107,16 +129,7 @@ function createDiv() {
 
 	$("div#Heyan div.box").click(function(){
 		var point = idToPoint( $(this).attr("id") );
-		if (isselected==0 || selected[0] != point[0] || selected[1] != point[1]) {
-			$("div#Panel div#temple").css("display","block");
-			isselected=1;
-			selected=point;
-			selectedUpdate();
-		} else {
-			$("div#Panel div#temple").css("display","none");
-			isselected=0;
-			selectedUpdate();
-		}
+		clickDiv(point[0],point[1]);
 	});
 	
 }
@@ -219,8 +232,7 @@ $(window).keydown(function(e){
 			break;
 		}
 		if (0 <= nextX && nextX < 32 && 0 <= nextY && nextY < 38 && (nextX < 12 || 20 <= nextX || 10 <= nextY) ) {
-			selected = [nextX,nextY];
-			selectedUpdate();
+			selectDiv(nextX,nextY);
 		}
 	}
 });
