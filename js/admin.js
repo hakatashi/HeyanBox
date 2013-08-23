@@ -52,6 +52,7 @@ function parseAndUpdate(data) {
 			}
 		}
 	}
+	if (isselected==1) selectDiv(selected[0],selected[1]);
 }
 
 //データ読み込み
