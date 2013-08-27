@@ -7,7 +7,7 @@ if 'QUERY_STRING' in os.environ:
 else:
     query = {}
 
-FILE = "data.txt"
+FILE = "../web/data.txt"
 data = open(FILE, "r")
 lines = data.readlines()
 data.close()
@@ -27,6 +27,7 @@ y = int(query["y"][0])
 
 TEMPLE += 1
 TEMPLES.append([x, y])
+MONEY -= 20000
 
 data = open(FILE, "w")
 strTEMPLES = [str(posts[0])+" "+str(posts[1]) for posts in TEMPLES]
@@ -40,5 +41,3 @@ data.close()
 
 print "Content-Type: text/plain\n"
 print datatext
-
-os.system("a.exe")
